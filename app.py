@@ -9,7 +9,7 @@ st.set_page_config(page_title="Invoice AI", layout="wide")
 st.title("📄 Smart Invoice Intelligence System")
 
 # -------------------------
-# FILE UPLOAD (PDF ONLY)
+# FILE UPLOAD (PDF)
 # -------------------------
 uploaded_file = st.file_uploader("Upload Invoice PDF", type="pdf")
 
@@ -25,6 +25,9 @@ if uploaded_file:
     for page in reader.pages:
         text += page.extract_text() or ""
 
+    # Clean text (fix spacing issue)
+    text = re.sub(r"\s+", " ", text)
+
     st.subheader("🔍 Extracted Text")
     st.write(text)
 
@@ -38,7 +41,7 @@ if uploaded_file:
     # -------------------------
     # GROQ CLIENT
     # -------------------------
-   client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+    client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
     # -------------------------
     # PROMPT (FINAL)
