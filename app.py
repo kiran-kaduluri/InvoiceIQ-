@@ -1,6 +1,6 @@
 import streamlit as st
 from groq import Groq
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from validator import validate_invoice
 import json
 import re
