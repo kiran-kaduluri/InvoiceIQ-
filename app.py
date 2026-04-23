@@ -55,7 +55,8 @@ if uploaded_file:
     - Return ONLY valid JSON
 
     Invoice Text:
-    {text}
+    {text[:3000]}
+
 
     Output format:
     {{
